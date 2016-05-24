@@ -9,6 +9,9 @@ dev:
 up:
 	$(DOCKER_COMPOSE) up
 
+build:
+	$(DOCKER_COMPOSE) build
+
 clean:
 	$(DOCKER_COMPOSE) kill
 	$(DOCKER_COMPOSE) rm -fv
