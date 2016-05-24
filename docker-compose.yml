@@ -1,0 +1,39 @@
+version: '2'
+services:
+    api:
+        build: .
+        environment:
+          - MYSQL_HOST=192.168.99.100
+        ports:
+            - "3000:3000"
+            - "55555:55555"
+        links:
+            - "couchdb:COUCHDB"
+            - "redis:REDIS"
+            - "db:DB"
+
+    node:
+      image: strongloop/node
+      links:
+        - "couchdb:COUCHDB"
+        - "redis:REDIS"
+        - "db:DB"
+      volumes:
+        - "/Users/danieldihardja/dev/docker/node-cms:/home/strongloop"
+
+    db:
+        image: percona:5.6
+        environment:
+          MYSQL_ROOT_PASSWORD: somwpwd
+        ports:
+          - "3306:3306"
+
+    couchdb:
+        image: klaemo/couchdb:1.6
+        ports:
+          - "5984:5984"
+
+    redis:
+        image: redis:3
+        ports:
+          - "6379:6379"
