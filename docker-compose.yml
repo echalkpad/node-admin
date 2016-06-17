@@ -4,22 +4,17 @@ services:
         build: .
         environment:
           - MYSQL_HOST=192.168.99.100
+          - HOST=0.0.0.0
+          - PORT=4444
         ports:
-            - "3000:3000"
-            - "55555:55555"
+            - "4444:4444"
         links:
             - "couchdb:COUCHDB"
             - "redis:REDIS"
             - "db:DB"
 
-    node:
-      image: strongloop/node
-      links:
-        - "couchdb:COUCHDB"
-        - "redis:REDIS"
-        - "db:DB"
-      volumes:
-        - "/Users/danieldihardja/dev/docker/node-cms:/home/strongloop"
+        volumes:
+          - "$PWD:/home/strongloop"
 
     db:
         image: percona:5.6

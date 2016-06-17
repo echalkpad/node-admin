@@ -1,8 +1,3 @@
-// Copyright IBM Corp. 2014,2016. All Rights Reserved.
-// Node module: loopback-example-ssl
-// This file is licensed under the MIT License.
-// License text available at https://opensource.org/licenses/MIT
-
 var loopback = require('loopback');
 var boot = require('loopback-boot');
 
@@ -16,19 +11,24 @@ var app = module.exports = loopback();
 boot(app, __dirname);
 
 app.start = function(httpOnly) {
+
   if (httpOnly === undefined) {
     httpOnly = process.env.HTTP;
   }
+
   var server = null;
+
   if (!httpOnly) {
     var options = {
       key: sslConfig.privateKey,
-      cert: sslConfig.certificate,
+      cert: sslConfig.certificate
     };
     server = https.createServer(options, app);
-  } else {
+  }
+  else {
     server = http.createServer(app);
   }
+
   server.listen(app.get('port'), function() {
     var baseUrl = (httpOnly ? 'http://' : 'https://') + app.get('host') + ':' + app.get('port');
     app.emit('started', baseUrl);
@@ -43,5 +43,10 @@ app.start = function(httpOnly) {
 
 // start the server if `$ node server.js`
 if (require.main === module) {
+
+  // set to true for httpOnly
+   //app.start(true);
+
+  // use ssl
   app.start();
 }
