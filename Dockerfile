@@ -8,15 +8,15 @@ FROM strongloop/node
 
 # It is common to copy your current
 
-ADD . /home/nodecms
+ADD . /home/node-admin
 
-WORKDIR /home/nodecms
+WORKDIR /home/nod-eadmin
 
 ENV NODE_ENV production
 
 RUN sudo npm install
 
-WORKDIR /home/nodecms
+WORKDIR /home/node-admin
 
 CMD ["node", "." ]
 

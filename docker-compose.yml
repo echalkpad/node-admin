@@ -3,11 +3,10 @@ services:
     api:
         build: .
         environment:
-          - MYSQL_HOST=192.168.99.100
-          - HOST=0.0.0.0
-          - PORT=4444
+          - MYSQL_HOST=${MYSQL_HOST}
         ports:
-            - "4444:4444"
+            - "${API_PORT}:${API_PORT}"
+            - "${ARC_PORT}:${ARC_PORT}"
         links:
             - "couchdb:COUCHDB"
             - "redis:REDIS"
@@ -21,14 +20,14 @@ services:
         environment:
           MYSQL_ROOT_PASSWORD: somwpwd
         ports:
-          - "3306:3306"
+          - "${MYSQL_PORT}:${MYSQL_PORT}"
 
     couchdb:
         image: klaemo/couchdb:1.6
         ports:
-          - "5984:5984"
+          - "${COUCHDB_PORT}:${COUCHDB_PORT}"
 
     redis:
         image: redis:3
         ports:
-          - "6379:6379"
+          - "${REDIS_PORT}:${REDIS_PORT}"

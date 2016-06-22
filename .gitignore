@@ -20,3 +20,4 @@ npm-debug.log
 .npm
 .bash_history
 .editorconfig
+.strongloop
