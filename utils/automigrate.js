@@ -15,7 +15,7 @@ for(var i=2; i<process.argv.length; i++) {
 }
 
 // automigrate the models
-dataSource.automigrate(models, function(err) {
+dataSource.autoupdate(models, function(err) {
     if(err) throw(err);
     dataSource.disconnect();
 });
