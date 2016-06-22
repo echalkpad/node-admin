@@ -18,7 +18,7 @@ services:
             - "db:DB"
 
         volumes:
-          - "$PWD:/home/strongloop"
+          - "$PWD:/home/node-admin"
 
     db:
         image: percona:5.6

@@ -10,7 +10,7 @@ FROM strongloop/node
 
 ADD . /home/node-admin
 
-WORKDIR /home/nod-eadmin
+WORKDIR /home/node-admin
 
 ENV NODE_ENV production
 
