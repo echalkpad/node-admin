@@ -4,23 +4,31 @@
 
 var gulp = require('gulp');
 var models = require('./utils/models')();
+var Promise = require('bluebird');
 
 gulp.task('models', function (cb) {
-	models.generate('dialog')
-		.then(function(res) {
-			return models.generate('dialog_type')
-		})
-		.then(function(res) {
-			return models.generate('thema')
-		})
-		.then(function(res) {
-			return models.generate('tracker_type')
-		})
-		.then(function(res) {
-			return models.generate('user_option')
-		})
-		.then(function() {
-			models.close();
-			cb();
-		})
+
+	/**
+	 * generate a model based on the table info
+	 * @param table
+	 * @returns {*}
+	 */
+	function generateModel(table) {
+		return models.generate(table)
+	}
+
+	/**
+	 * close the datasource
+	 */
+	function end() {
+		models.close();
+		cb();
+	}
+
+	generateModel('dialog')
+		.then(generateModel('dialog_type'))
+		.then(generateModel('thema'))
+		.then(generateModel('tracker_type'))
+		.then(generateModel('user_option'))
+		.then(end);
 });
