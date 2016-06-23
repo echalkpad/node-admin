@@ -3,7 +3,6 @@
  */
 
 var gulp = require('gulp');
-var Promise = require('bluebird');
 var models = require('./utils/models')();
 
 gulp.task('models', function (cb) {
