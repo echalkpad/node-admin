@@ -38,6 +38,10 @@
     "dataSource": "mysqlDs",
     "public": true
   },
+  "DialogType": {
+    "dataSource": "mysqlDs",
+    "public": true
+  },
   "Thema": {
     "dataSource": "mysqlDs",
     "public": true
@@ -47,10 +51,6 @@
     "public": true
   },
   "UserOption": {
-    "dataSource": "mysqlDs",
-    "public": true
-  },
-  "DialogType": {
     "dataSource": "mysqlDs",
     "public": true
   }
