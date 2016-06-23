@@ -5,7 +5,8 @@
         "mysql": {
             "schema": "chardb",
             "table": "dialog"
-        }
+        },
+        "relations": {}
     },
     "properties": {
         "id": {
@@ -52,21 +53,6 @@
                 "dataPrecision": 10,
                 "dataScale": 0,
                 "nullable": "N"
-            }
-        },
-        "index": {
-            "type": "Number",
-            "required": false,
-            "length": null,
-            "precision": 10,
-            "scale": 0,
-            "mysql": {
-                "columnName": "index",
-                "dataType": "int",
-                "dataLength": null,
-                "dataPrecision": 10,
-                "dataScale": 0,
-                "nullable": "Y"
             }
         },
         "title": {

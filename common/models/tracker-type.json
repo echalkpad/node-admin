@@ -5,7 +5,8 @@
         "mysql": {
             "schema": "chardb",
             "table": "tracker_type"
-        }
+        },
+        "relations": {}
     },
     "properties": {
         "id": {

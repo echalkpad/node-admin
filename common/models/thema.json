@@ -5,7 +5,8 @@
         "mysql": {
             "schema": "chardb",
             "table": "thema"
-        }
+        },
+        "relations": {}
     },
     "properties": {
         "id": {
