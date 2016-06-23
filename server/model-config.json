@@ -4,7 +4,9 @@
       "loopback/common/models",
       "loopback/server/models",
       "../common/models",
-      "./models"
+      "./models",
+      "../common/models/undefined/",
+      "../common/models/"
     ],
     "mixins": [
       "loopback/common/mixins",
@@ -31,5 +33,25 @@
   "Role": {
     "dataSource": "mysqlDs",
     "public": false
+  },
+  "Dialog": {
+    "dataSource": "mysqlDs",
+    "public": true
+  },
+  "DialogType": {
+    "dataSource": "mysqlDs",
+    "public": true
+  },
+  "Thema": {
+    "dataSource": "mysqlDs",
+    "public": true
+  },
+  "TrackerType": {
+    "dataSource": "mysqlDs",
+    "public": true
+  },
+  "UserOption": {
+    "dataSource": "mysqlDs",
+    "public": true
   }
 }
