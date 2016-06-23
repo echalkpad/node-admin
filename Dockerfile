@@ -15,8 +15,7 @@ WORKDIR /home/node-admin
 ENV NODE_ENV production
 
 RUN sudo npm install
-
-WORKDIR /home/node-admin
+RUN sudo npm install -g gulp-cli
 
 CMD ["node", "." ]
 
