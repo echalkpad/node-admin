@@ -1,5 +1,5 @@
 # node-admin
-- Mobile backend setup based on node.js, loopback, mysql, couchdb, socket.io, ng-admin and docker.
+- Mobile backend setup based on Node.js, Loopback, MySQL, CouchDB, Socket.io, ng-admin and Docker.
 
 ## Requirements
 - [docker](https://www.docker.com/products/docker-toolbox)
