@@ -25,10 +25,15 @@ gulp.task('models', function (cb) {
 		cb();
 	}
 
-	generateModel('dialog')
-		.then(generateModel('dialog_type'))
+	generateModel('sensor_type')
 		.then(generateModel('thema'))
-		.then(generateModel('tracker_type'))
+		.then(generateModel('dialog'))
+		.then(generateModel('mood'))
+		.then(generateModel('sentence'))
+		.then(generateModel('dialog_sentence'))
 		.then(generateModel('user_option'))
-		.then(end);
+
+		// TODO:
+		// fix this. somehow it closes before all generation are completed
+		//.then(end);
 });

@@ -33,11 +33,7 @@
     "dataSource": "mysqlDs",
     "public": false
   },
-  "Dialog": {
-    "dataSource": "mysqlDs",
-    "public": true
-  },
-  "DialogType": {
+  "SensorType": {
     "dataSource": "mysqlDs",
     "public": true
   },
@@ -45,7 +41,19 @@
     "dataSource": "mysqlDs",
     "public": true
   },
-  "TrackerType": {
+  "Dialog": {
+    "dataSource": "mysqlDs",
+    "public": true
+  },
+  "Mood": {
+    "dataSource": "mysqlDs",
+    "public": true
+  },
+  "Sentence": {
+    "dataSource": "mysqlDs",
+    "public": true
+  },
+  "DialogSentence": {
     "dataSource": "mysqlDs",
     "public": true
   },

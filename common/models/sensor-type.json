@@ -1,10 +1,10 @@
 {
-    "name": "DialogType",
+    "name": "SensorType",
     "options": {
         "idInjection": false,
         "mysql": {
             "schema": "chardb",
-            "table": "dialog_type"
+            "table": "sensor_type"
         },
         "relations": {}
     },
