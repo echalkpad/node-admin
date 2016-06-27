@@ -32,14 +32,19 @@ module.exports = function(CouchDb) {
 					dialog.sentences = [];
 					dialog.inputs = [];
 
-
 					for(var j=0; j<r.dialogSentences.length; j++) {
 						dialog.sentences.push(r.dialogSentences[j].sentence);
 					}
 
 					for(var j=0; j<r.dialogInputs.length; j++) {
-						dialog.inputs.push(r.dialogInputs[j].input);
+						var dInput = r.dialogInputs[j];
+						var input = dInput.input;
+						input.nextDialogId = dInput.nextDialogId;
+						dialog.inputs.push(input);
+						console.log('input', input);
 					}
+
+
 
 					tmp.push(dialog);
 				}
