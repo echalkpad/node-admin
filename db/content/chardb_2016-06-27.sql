@@ -36,7 +36,7 @@
 LOCK TABLES `dialog` WRITE;
 /*!40000 ALTER TABLE `dialog` DISABLE KEYS */;
 
-INSERT INTO `dialog` (`id`, `thema_id`, `mood_id`, `title`, `description`, `is_entry_point`)
+INSERT INTO `dialog` (`id`, `theme_id`, `mood_id`, `title`, `description`, `is_entry_point`)
 VALUES
 	(1,1,1,'First introduction 1',NULL,0),
 	(2,1,1,'First introduction 2',NULL,0),

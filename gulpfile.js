@@ -30,7 +30,7 @@ gulp.task('models', function (cb) {
 	}
 
 	generateModel('sensor_type')
-		.then(generateModel('thema'))
+		.then(generateModel('theme'))
 		.then(generateModel('dialog'))
 		.then(generateModel('mood'))
 		.then(generateModel('sentence'))

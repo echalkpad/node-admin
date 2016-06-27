@@ -37,10 +37,6 @@
     "dataSource": "mysqlDs",
     "public": true
   },
-  "Thema": {
-    "dataSource": "mysqlDs",
-    "public": true
-  },
   "Dialog": {
     "dataSource": "mysqlDs",
     "public": true
@@ -67,6 +63,10 @@
   },
   "CouchDB": {
     "dataSource": null,
+    "public": true
+  },
+  "Theme": {
+    "dataSource": "mysqlDs",
     "public": true
   }
 }

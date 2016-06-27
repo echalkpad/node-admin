@@ -1,12 +1,11 @@
 {
-    "name": "Thema",
+    "name": "Theme",
     "options": {
         "idInjection": false,
         "mysql": {
             "schema": "chardb",
-            "table": "thema"
-        },
-        "relations": {}
+            "table": "theme"
+        }
     },
     "properties": {
         "id": {
@@ -70,6 +69,5 @@
                 "nullable": "Y"
             }
         }
-    },
-    "acls": []
+    }
 }

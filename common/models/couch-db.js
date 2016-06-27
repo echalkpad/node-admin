@@ -10,9 +10,14 @@ module.exports = function(CouchDb) {
 		var Thema = models.Thema;
 		var Dialog = models.Dialog;
 
+		Thema.find()
+			.then(function(res) {
+				defer.resolve(res);
+			})
+			.catch(function(err) {
+			    defer.reject(err);
+			});
 
-
-		defer.resolve({status: 'ok'});
 		return defer.promise;
 	};
 
