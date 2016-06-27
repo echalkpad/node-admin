@@ -43,13 +43,13 @@
         "title": {
             "type": "String",
             "required": false,
-            "length": 128,
+            "length": 200,
             "precision": null,
             "scale": null,
             "mysql": {
                 "columnName": "title",
                 "dataType": "varchar",
-                "dataLength": 128,
+                "dataLength": 200,
                 "dataPrecision": null,
                 "dataScale": null,
                 "nullable": "Y"
