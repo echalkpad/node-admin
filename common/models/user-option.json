@@ -5,8 +5,7 @@
         "mysql": {
             "schema": "chardb",
             "table": "user_option"
-        },
-        "relations": {}
+        }
     },
     "properties": {
         "id": {
