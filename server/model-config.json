@@ -64,5 +64,9 @@
   "DialogUserInput": {
     "dataSource": "mysqlDs",
     "public": true
+  },
+  "CouchDB": {
+    "dataSource": null,
+    "public": true
   }
 }

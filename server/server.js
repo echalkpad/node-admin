@@ -7,6 +7,8 @@ var sslConfig = require('./ssl-config');
 
 var app = module.exports = loopback();
 
+global.Promise = require('bluebird');
+
 // boot scripts mount components like REST API
 boot(app, __dirname);
 
