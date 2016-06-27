@@ -31,7 +31,7 @@ gulp.task('models', function (cb) {
 		.then(generateModel('mood'))
 		.then(generateModel('sentence'))
 		.then(generateModel('dialog_sentence'))
-		.then(generateModel('user_option'))
+		.then(generateModel('user_input'))
 
 		// TODO:
 		// fix this. somehow it closes before all generation are completed
