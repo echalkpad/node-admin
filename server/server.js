@@ -13,7 +13,7 @@ boot(app, __dirname);
 app.start = function(httpOnly) {
 
   if (httpOnly === undefined) {
-    httpOnly = process.env.HTTP;
+    httpOnly = process.env.HTTP ? true : false;
   }
 
   var server = null;
