@@ -5,7 +5,8 @@
         "mysql": {
             "schema": "chardb",
             "table": "user_input"
-        }
+        },
+        "relations": {}
     },
     "properties": {
         "id": {
@@ -17,6 +18,36 @@
             "id": 1,
             "mysql": {
                 "columnName": "id",
+                "dataType": "int",
+                "dataLength": null,
+                "dataPrecision": 10,
+                "dataScale": 0,
+                "nullable": "N"
+            }
+        },
+        "fromDialogId": {
+            "type": "Number",
+            "required": true,
+            "length": null,
+            "precision": 10,
+            "scale": 0,
+            "mysql": {
+                "columnName": "from_dialog_id",
+                "dataType": "int",
+                "dataLength": null,
+                "dataPrecision": 10,
+                "dataScale": 0,
+                "nullable": "N"
+            }
+        },
+        "toDialogId": {
+            "type": "Number",
+            "required": true,
+            "length": null,
+            "precision": 10,
+            "scale": 0,
+            "mysql": {
+                "columnName": "to_dialog_id",
                 "dataType": "int",
                 "dataLength": null,
                 "dataPrecision": 10,
@@ -67,36 +98,6 @@
                 "dataPrecision": null,
                 "dataScale": null,
                 "nullable": "Y"
-            }
-        },
-        "fromDialogId": {
-            "type": "Number",
-            "required": true,
-            "length": null,
-            "precision": 10,
-            "scale": 0,
-            "mysql": {
-                "columnName": "from_dialog_id",
-                "dataType": "int",
-                "dataLength": null,
-                "dataPrecision": 10,
-                "dataScale": 0,
-                "nullable": "N"
-            }
-        },
-        "toDialogId": {
-            "type": "Number",
-            "required": true,
-            "length": null,
-            "precision": 10,
-            "scale": 0,
-            "mysql": {
-                "columnName": "to_dialog_id",
-                "dataType": "int",
-                "dataLength": null,
-                "dataPrecision": 10,
-                "dataScale": 0,
-                "nullable": "N"
             }
         }
     }

@@ -21,8 +21,12 @@ gulp.task('models', function (cb) {
 	 * close the datasource
 	 */
 	function end() {
-		models.close();
-		cb();
+		// TODO:
+		// fix this. somehow it closes before all generation are completed
+		setTimeout(function() {
+			models.close();
+			cb();
+		}, 1000)
 	}
 
 	generateModel('sensor_type')
@@ -33,7 +37,6 @@ gulp.task('models', function (cb) {
 		.then(generateModel('dialog_sentence'))
 		.then(generateModel('user_input'))
 
-		// TODO:
-		// fix this. somehow it closes before all generation are completed
-		//.then(end);
+
+		.then(end);
 });
