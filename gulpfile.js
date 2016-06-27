@@ -36,6 +36,7 @@ gulp.task('models', function (cb) {
 		.then(generateModel('sentence'))
 		.then(generateModel('dialog_sentence'))
 		.then(generateModel('user_input'))
+		.then(generateModel('dialog_user_input'))
 
 
 		.then(end);

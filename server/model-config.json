@@ -60,5 +60,9 @@
   "UserInput": {
     "dataSource": "mysqlDs",
     "public": true
+  },
+  "DialogUserInput": {
+    "dataSource": "mysqlDs",
+    "public": true
   }
 }

@@ -1,12 +1,11 @@
 {
-    "name": "Sentence",
+    "name": "DialogUserInput",
     "options": {
         "idInjection": false,
         "mysql": {
             "schema": "chardb",
-            "table": "sentence"
-        },
-        "relations": {}
+            "table": "dialog_user_input"
+        }
     },
     "properties": {
         "id": {
@@ -25,14 +24,14 @@
                 "nullable": "N"
             }
         },
-        "moodId": {
+        "dialogId": {
             "type": "Number",
             "required": true,
             "length": null,
             "precision": 10,
             "scale": 0,
             "mysql": {
-                "columnName": "mood_id",
+                "columnName": "dialog_id",
                 "dataType": "int",
                 "dataLength": null,
                 "dataPrecision": 10,
@@ -40,19 +39,19 @@
                 "nullable": "N"
             }
         },
-        "title": {
-            "type": "String",
-            "required": false,
-            "length": 128,
-            "precision": null,
-            "scale": null,
+        "userInputId": {
+            "type": "Number",
+            "required": true,
+            "length": null,
+            "precision": 10,
+            "scale": 0,
             "mysql": {
-                "columnName": "title",
-                "dataType": "varchar",
-                "dataLength": 128,
-                "dataPrecision": null,
-                "dataScale": null,
-                "nullable": "Y"
+                "columnName": "user_input_id",
+                "dataType": "int",
+                "dataLength": null,
+                "dataPrecision": 10,
+                "dataScale": 0,
+                "nullable": "N"
             }
         }
     }
