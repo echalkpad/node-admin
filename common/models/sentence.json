@@ -39,6 +39,36 @@
                 "dataScale": 0,
                 "nullable": "N"
             }
+        },
+        "title": {
+            "type": "String",
+            "required": false,
+            "length": 45,
+            "precision": null,
+            "scale": null,
+            "mysql": {
+                "columnName": "title",
+                "dataType": "varchar",
+                "dataLength": 45,
+                "dataPrecision": null,
+                "dataScale": null,
+                "nullable": "Y"
+            }
+        },
+        "description": {
+            "type": "String",
+            "required": false,
+            "length": 45,
+            "precision": null,
+            "scale": null,
+            "mysql": {
+                "columnName": "description",
+                "dataType": "varchar",
+                "dataLength": 45,
+                "dataPrecision": null,
+                "dataScale": null,
+                "nullable": "Y"
+            }
         }
     }
 }
