@@ -6,7 +6,13 @@
             "schema": "chardb",
             "table": "dialog_sentence"
         },
-        "relations": {}
+        "relations": {
+            "sentence": {
+                "type": "belongsTo",
+                "model": "Sentence",
+                "foreignKey": "sentenceId"
+            }
+        }
     },
     "properties": {
         "id": {

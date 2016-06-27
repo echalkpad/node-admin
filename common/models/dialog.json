@@ -7,10 +7,20 @@
             "table": "dialog"
         },
         "relations": {
-            "thema": {
+            "theme": {
                 "type": "belongsTo",
-                "model": "Thema",
-                "foreignKey": "themaId"
+                "model": "Theme",
+                "foreignKey": "themeId"
+            },
+            "dialogSentences": {
+                "type": "hasMany",
+                "model": "DialogSentence",
+                "foreignKey": "dialogId"
+            },
+            "dialogInputs": {
+                "type": "hasMany",
+                "model": "DialogUserInput",
+                "foreignKey": "dialogId"
             }
         }
     },

@@ -10,6 +10,7 @@ var CouchDB = app.models.CouchDB;
 describe('export', function() {
 
 	describe('dialogs', function() {
+
 		it('should export dialog', function(done) {
 			CouchDB.export()
 				.then(function(res) {
