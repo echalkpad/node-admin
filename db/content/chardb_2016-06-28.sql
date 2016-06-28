@@ -7,7 +7,7 @@
 #
 # Host: 192.168.99.100 (MySQL 5.6.30-76.3)
 # Database: chardb
-# Generation Time: 2016-06-27 19:17:52 +0000
+# Generation Time: 2016-06-27 22:22:48 +0000
 # ************************************************************
 
 
@@ -30,13 +30,27 @@
 
 
 
+# Dump of table dialog
+# ------------------------------------------------------------
+
+LOCK TABLES `dialog` WRITE;
+/*!40000 ALTER TABLE `dialog` DISABLE KEYS */;
+
+INSERT INTO `dialog` (`id`, `theme_id`)
+VALUES
+	(1,1);
+
+/*!40000 ALTER TABLE `dialog` ENABLE KEYS */;
+UNLOCK TABLES;
+
+
 # Dump of table dialog_block
 # ------------------------------------------------------------
 
 LOCK TABLES `dialog_block` WRITE;
 /*!40000 ALTER TABLE `dialog_block` DISABLE KEYS */;
 
-INSERT INTO `dialog_block` (`id`, `mood_id`, `dialog_id`, `title`, `description`, `is_entry_point`)
+INSERT INTO `dialog_block` (`id`, `dialog_id`, `mood_id`, `title`, `description`, `is_entry_point`)
 VALUES
 	(1,1,1,'First introduction 1',NULL,0),
 	(2,1,1,'First introduction 2',NULL,0),
@@ -100,7 +114,7 @@ VALUES
 	(6,3,4,NULL),
 	(7,3,5,NULL);
 
-/*!40000 ALTER TABLE `dialog_block_user_input` ENABLE KEYS */;
+/*!40000 ALTER TABLE `dialog_user_input` ENABLE KEYS */;
 UNLOCK TABLES;
 
 
