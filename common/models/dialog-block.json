@@ -96,14 +96,14 @@
                 "nullable": "Y"
             }
         },
-        "isEntryPoint": {
+        "isIceBreaker": {
             "type": "Number",
             "required": false,
             "length": null,
             "precision": 10,
             "scale": 0,
             "mysql": {
-                "columnName": "is_entry_point",
+                "columnName": "is_ice_breaker",
                 "dataType": "int",
                 "dataLength": null,
                 "dataPrecision": 10,

@@ -50,7 +50,7 @@ UNLOCK TABLES;
 LOCK TABLES `dialog_block` WRITE;
 /*!40000 ALTER TABLE `dialog_block` DISABLE KEYS */;
 
-INSERT INTO `dialog_block` (`id`, `dialog_id`, `mood_id`, `title`, `description`, `is_entry_point`, `type`)
+INSERT INTO `dialog_block` (`id`, `dialog_id`, `mood_id`, `title`, `description`, `is_ice_breaker`, `type`)
 VALUES
 	(1,1,1,'First introduction 1',NULL,0,'DialogBlock'),
 	(2,1,1,'First introduction 2',NULL,0,'DialogBlock'),

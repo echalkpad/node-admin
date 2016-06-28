@@ -52,7 +52,7 @@ module.exports = function(CouchDB) {
 				return CouchDB.updateSensorTypes();
 			})
 			.then(function(res) {
-				CouchDB.updateThemes()
+				CouchDB.updateThemes();
 			})
 			.then(function(res) {
 				return CouchDB.updateDialogs();
@@ -178,7 +178,7 @@ module.exports = function(CouchDB) {
 					dialogBlock.id = r.id;
 					dialogBlock.title = r.title;
 					dialogBlock.description = r.description;
-					dialogBlock.isEntryPoint = r.isEntryPoint;
+					dialogBlock.isIceBreaker = (r.isIceBreaker > 0) ? true : false;
 					dialogBlock.dialogId = r.dialogId;
 					dialogBlock.sentences = [];
 					dialogBlock.inputs = {};
