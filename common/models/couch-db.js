@@ -271,26 +271,26 @@ module.exports = function(CouchDB) {
 			}
 		}
 
-		designDoc('SensorType', 'by_id', sensorTypeById())
-			.then(function(res) {
-				designDoc('Theme', 'by_id', themeById())
+		writeDesignDoc('SensorType', 'by_id', sensorTypeById())
+			.then(function() {
+				writeDesignDoc('Theme', 'by_id', themeById())
 			})
-			.then(function(res) {
-				designDoc('ThemeBySensorType', 'by_sensor_type_id', themeBySensorType())
+			.then(function() {
+				writeDesignDoc('ThemeBySensorType', 'by_sensor_type_id', themeBySensorType())
 			})
-			.then(function(res) {
-				return designDoc('Dialog', 'by_id', dialogById())
+			.then(function() {
+				return writeDesignDoc('Dialog', 'by_id', dialogById())
 			})
-			.then(function(res) {
-				return designDoc('DialogBlock', 'by_id', dialogBlockById())
+			.then(function() {
+				return writeDesignDoc('DialogBlock', 'by_id', dialogBlockById())
 			})
-			.then(function(res) {
-				return designDoc('DialogByTheme', 'by_theme_id', dialogByThemeId())
+			.then(function() {
+				return writeDesignDoc('DialogByTheme', 'by_theme_id', dialogByThemeId())
 			})
-			.then(function(res) {
-				return designDoc('DialogBlockByDialog', 'by_dialog_id', dialogBlockByDialogId())
+			.then(function() {
+				return writeDesignDoc('DialogBlockByDialog', 'by_dialog_id', dialogBlockByDialogId())
 			})
-			.then(function(res) {
+			.then(function() {
 				defer.resolve();
 			})
 			.catch(function(err) {
@@ -352,7 +352,7 @@ module.exports = function(CouchDB) {
 	 * @param viewName
 	 * @param mapFunc
 	 */
-	function designDoc(designDoc, viewName, mapFunc) {
+	function writeDesignDoc(designDoc, viewName, mapFunc) {
 		var defer = Promise.pending();
 
 		var v = {};

@@ -1,10 +1,10 @@
 DOCKER_COMPOSE  ?= docker-compose
 
 bash:
-	$(DOCKER_COMPOSE) run -p 3000:3000 -p 4444:4444 api bash
+	$(DOCKER_COMPOSE) run -p 3000:3000 api bash
 
 up:
-	$(DOCKER_COMPOSE) up
+	$(DOCKER_COMPOSE) up -d
 
 build:
 	$(DOCKER_COMPOSE) build
