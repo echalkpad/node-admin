@@ -11,16 +11,6 @@
                 "type": "belongsTo",
                 "model": "Theme",
                 "foreignKey": "themeId"
-            },
-            "dialogSentences": {
-                "type": "hasMany",
-                "model": "DialogSentence",
-                "foreignKey": "dialogId"
-            },
-            "dialogInputs": {
-                "type": "hasMany",
-                "model": "DialogUserInput",
-                "foreignKey": "dialogId"
             }
         }
     },
@@ -54,6 +44,21 @@
                 "dataPrecision": 10,
                 "dataScale": 0,
                 "nullable": "N"
+            }
+        },
+        "type": {
+            "type": "String",
+            "required": false,
+            "length": 45,
+            "precision": null,
+            "scale": null,
+            "mysql": {
+                "columnName": "type",
+                "dataType": "varchar",
+                "dataLength": 45,
+                "dataPrecision": null,
+                "dataScale": null,
+                "nullable": "Y"
             }
         }
     },

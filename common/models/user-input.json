@@ -40,14 +40,14 @@
                 "nullable": "Y"
             }
         },
-        "type": {
+        "inputType": {
             "type": "String",
             "required": false,
             "length": 45,
             "precision": null,
             "scale": null,
             "mysql": {
-                "columnName": "type",
+                "columnName": "input_type",
                 "dataType": "varchar",
                 "dataLength": 45,
                 "dataPrecision": null,

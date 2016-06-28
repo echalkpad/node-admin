@@ -69,6 +69,21 @@
                 "dataScale": null,
                 "nullable": "Y"
             }
+        },
+        "type": {
+            "type": "String",
+            "required": false,
+            "length": 45,
+            "precision": null,
+            "scale": null,
+            "mysql": {
+                "columnName": "type",
+                "dataType": "varchar",
+                "dataLength": 45,
+                "dataPrecision": null,
+                "dataScale": null,
+                "nullable": "Y"
+            }
         }
     }
 }
