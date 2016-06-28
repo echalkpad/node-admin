@@ -4,7 +4,39 @@ module.exports = function(CouchDB) {
 	var port = process.env.COUCHDB_PORT || 5984;
 	var couchDBUrl = 'http://' + host + ':' + port;
 	var nano = require('nano')(couchDBUrl);
-	var chardb = nano.db.use('character');
+	var chardb;
+
+	/**
+	 * create a new db
+	 */
+	CouchDB.create = function() {
+		var defer = Promise.pending();
+		nano.db.create('character', function(err, res) {
+			if(err) {
+				defer.reject(err);
+			}
+			chardb = nano.db.use('character');
+			defer.resolve({status: 'ok'});
+		});
+		return defer.promise;
+	};
+
+	/**
+	 * destroy the db
+	 */
+	CouchDB.destroy = function() {
+		var defer = Promise.pending();
+		nano.db.destroy('character', function(err, res) {
+			// ignore the error since it's because the db could not be found which is absolutely ok
+			/*
+			if(err) {
+				defer.reject(err);
+			}
+			*/
+			defer.resolve({status: 'ok'});
+		});
+		return defer.promise;
+	};
 
 	/**
 	 *
@@ -12,7 +44,16 @@ module.exports = function(CouchDB) {
 	CouchDB.updateAll = function() {
 		var defer = Promise.pending();
 
-		CouchDB.updateThemes()
+		CouchDB.destroy()
+			.then(function(res) {
+				return CouchDB.create();
+			})
+			.then(function(res) {
+				return CouchDB.updateSensorTypes();
+			})
+			.then(function(res) {
+				CouchDB.updateThemes()
+			})
 			.then(function(res) {
 				return CouchDB.updateDialogs();
 			})
@@ -272,16 +313,16 @@ module.exports = function(CouchDB) {
 			}
 		}
 
-		writeDesignDoc('SensorType', ['by_id'], [sensorTypeById()])
+		writeDesignDoc('SensorType', ['byId'], [sensorTypeById()])
 
 			.then(function() {
-				writeDesignDoc('Theme', ['by_id', 'by_sensor_type_id'], [themeById(), themeBySensorType()])
+				writeDesignDoc('Theme', ['byId', 'bySensorTypeId'], [themeById(), themeBySensorType()])
 			})
 			.then(function() {
-				return writeDesignDoc('Dialog', ['by_id', 'by_theme_id'], [dialogById(), dialogByThemeId()])
+				return writeDesignDoc('Dialog', ['byId', 'byThemeId'], [dialogById(), dialogByThemeId()])
 			})
 			.then(function() {
-				return writeDesignDoc('DialogBlock', ['by_id', 'by_dialog_id'], [dialogBlockById(), dialogBlockByDialogId()])
+				return writeDesignDoc('DialogBlock', ['byId', 'byDialogId'], [dialogBlockById(), dialogBlockByDialogId()])
 			})
 			.then(function() {
 				defer.resolve();
@@ -379,31 +420,7 @@ module.exports = function(CouchDB) {
 	 *
 	 */
 	CouchDB.remoteMethod(
-		'updateDialogBlocks', {
-			accepts:[],
-			returns: [
-				{arg:'data', type:'object', root:true}
-			]
-		}
-	);
-
-	/**
-	 *
-	 */
-	CouchDB.remoteMethod(
-		'updateDialogs', {
-			accepts:[],
-			returns: [
-				{arg:'data', type:'object', root:true}
-			]
-		}
-	);
-
-	/**
-	 *
-	 */
-	CouchDB.remoteMethod(
-		'updateThemes', {
+		'updateAll', {
 			accepts:[],
 			returns: [
 				{arg:'data', type:'object', root:true}
