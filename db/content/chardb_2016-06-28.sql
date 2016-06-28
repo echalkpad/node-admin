@@ -7,7 +7,7 @@
 #
 # Host: 192.168.99.100 (MySQL 5.6.30-76.3)
 # Database: chardb
-# Generation Time: 2016-06-28 09:04:51 +0000
+# Generation Time: 2016-06-28 10:42:49 +0000
 # ************************************************************
 
 
@@ -57,7 +57,7 @@ VALUES
 	(3,1,1,'First introduction 3',NULL,0,'DialogBlock'),
 	(4,1,1,'First introduction 4',NULL,0,'DialogBlock'),
 	(5,1,1,'First introduction 5',NULL,0,'DialogBlock'),
-	(6,1,1,'First introduction 6',NULL,0,'DialogBlock');
+	(6,1,1,'First introduction 600',NULL,0,'DialogBlock');
 
 /*!40000 ALTER TABLE `dialog_block` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -147,6 +147,15 @@ UNLOCK TABLES;
 # Dump of table sensor_type
 # ------------------------------------------------------------
 
+LOCK TABLES `sensor_type` WRITE;
+/*!40000 ALTER TABLE `sensor_type` DISABLE KEYS */;
+
+INSERT INTO `sensor_type` (`id`, `title`, `description`, `type`)
+VALUES
+	(1,'GPS',NULL,'SensorType');
+
+/*!40000 ALTER TABLE `sensor_type` ENABLE KEYS */;
+UNLOCK TABLES;
 
 
 # Dump of table sentence
