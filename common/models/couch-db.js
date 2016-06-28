@@ -7,16 +7,59 @@ module.exports = function(CouchDB) {
 	var chardb = nano.db.use('character');
 
 	/**
-	 *
+	 * update Theme Docs
 	 */
 	CouchDB.updateThemes = function() {
 		var defer = Promise.pending();
-		defer.resolve({status: 'ok'});
+		var models = CouchDB.app.models;
+		var Theme = models.Theme;
+		Theme.find()
+			.then(function(res) {
+				var promises = [];
+				for(var i=0; i<res.length; i++) {
+					var theme = res[i];
+					theme._id = 'Theme-' + theme.id;
+					promises.push(writeDoc(theme));
+				}
+				return Promise.all(promises);
+			})
+			.then(function(res) {
+				defer.resolve({status: 'ok'});
+			})
+			.catch(function(err) {
+			    defer.reject(err);
+			});
 		return defer.promise;
 	};
 
 	/**
-	 *
+	 * Update Dialog Docs
+	 */
+	CouchDB.updateDialogs = function() {
+		var defer = Promise.pending();
+		var models = CouchDB.app.models;
+		var Dialog = models.Dialog;
+		Dialog.find()
+			.then(function(res) {
+				var promises = [];
+				for(var i=0; i<res.length; i++) {
+					var dialog = res[i];
+					dialog._id = 'Dialog-' + dialog.id;
+					promises.push(writeDoc(dialog));
+				}
+				return Promise.all(promises)
+			})
+			.then(function(res) {
+				defer.resolve({status: 'ok'});
+			})
+			.catch(function(err) {
+			    defer.reject(err);
+			});
+		return defer.promise;
+	};
+
+	/**
+	 *	update Dialog Blocks
 	 */
 	CouchDB.updateDialogBlocks = function() {
 		var defer = Promise.pending();
@@ -30,7 +73,6 @@ module.exports = function(CouchDB) {
 				{relation: 'dialogInputs', scope: {include: 'input'}}
 			]
 		};
-
 
 		DialogBlock.find(q)
 			.then(function(res) {
@@ -97,6 +139,7 @@ module.exports = function(CouchDB) {
 
 		var _doc;
 
+		// check if the doc exist
 		function getDoc() {
 			var defer = Promise.pending();
 			chardb.get(doc._id, function(err, res) {
@@ -106,6 +149,7 @@ module.exports = function(CouchDB) {
 			return defer.promise;
 		}
 
+		// update / insert the doc
 		function updateDoc() {
 			var defer = Promise.pending();
 			if(_doc) doc._rev = _doc._rev;
@@ -138,6 +182,18 @@ module.exports = function(CouchDB) {
 	 */
 	CouchDB.remoteMethod(
 		'updateDialogBlocks', {
+			accepts:[],
+			returns: [
+				{arg:'data', type:'object', root:true}
+			]
+		}
+	);
+
+	/**
+	 *
+	 */
+	CouchDB.remoteMethod(
+		'updateDialogs', {
 			accepts:[],
 			returns: [
 				{arg:'data', type:'object', root:true}
