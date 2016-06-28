@@ -68,5 +68,9 @@
   "Theme": {
     "dataSource": "mysqlDs",
     "public": true
+  },
+  "DialogBlock": {
+    "dataSource": "mysqlDs",
+    "public": true
   }
 }

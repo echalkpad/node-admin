@@ -1,13 +1,21 @@
-module.exports = function(CouchDb) {
+module.exports = function(CouchDB) {
 
 	/**
 	 *
 	 */
-	CouchDb.export = function() {
+	CouchDB.updateThemes = function() {
+		var defer = Promise.pending();
+		defer.resolve({status: 'ok'});
+		return defer.promise;
+	};
+
+	/**
+	 *
+	 */
+	CouchDB.updateDialogs = function() {
 		var defer = Promise.pending();
 
-		var models = CouchDb.app.models;
-		var Theme = models.Theme;
+		var models = CouchDB.app.models;
 		var Dialog = models.Dialog;
 
 		var q = {
@@ -25,27 +33,32 @@ module.exports = function(CouchDb) {
 
 					var r = res[i].toJSON();
 					var dialog = {};
+
+					dialog.id = r.id;
 					dialog.title = r.title;
 					dialog.description = r.description;
 					dialog.isEntryPoint = r.isEntryPoint;
 					dialog.theme = r.theme;
 					dialog.sentences = [];
-					dialog.inputs = [];
+					dialog.inputs = {};
 
 					for(var j=0; j<r.dialogSentences.length; j++) {
 						dialog.sentences.push(r.dialogSentences[j].sentence);
 					}
 
+					var inputTypeTable = {};
+
 					for(var j=0; j<r.dialogInputs.length; j++) {
 						var dInput = r.dialogInputs[j];
 						var input = dInput.input;
 						input.nextDialogId = dInput.nextDialogId;
-						dialog.inputs.push(input);
+
+						if(! inputTypeTable[input.type]) inputTypeTable[input.type] = [];
+						inputTypeTable[input.type].push(input);
+
 						console.log('input', input);
 					}
-
-
-
+					dialog.inputs = inputTypeTable;
 					tmp.push(dialog);
 				}
 				defer.resolve(tmp);
@@ -56,8 +69,23 @@ module.exports = function(CouchDb) {
 		return defer.promise;
 	};
 
-	CouchDb.remoteMethod(
-		'export', {
+	/**
+	 *
+	 */
+	CouchDB.remoteMethod(
+		'updateDialogs', {
+			accepts:[],
+			returns: [
+				{arg:'data', type:'object', root:true}
+			]
+		}
+	);
+
+	/**
+	 *
+	 */
+	CouchDB.remoteMethod(
+		'updateThemes', {
 			accepts:[],
 			returns: [
 				{arg:'data', type:'object', root:true}

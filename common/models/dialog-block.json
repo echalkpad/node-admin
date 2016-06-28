@@ -1,17 +1,10 @@
 {
-    "name": "DialogUserInput",
+    "name": "DialogBlock",
     "options": {
         "idInjection": false,
         "mysql": {
             "schema": "chardb",
-            "table": "dialog_user_input"
-        },
-        "relations": {
-            "input": {
-                "model": "UserInput",
-                "type": "belongsTo",
-                "foreignKey": "userInputId"
-            }
+            "table": "dialog_block"
         }
     },
     "properties": {
@@ -31,14 +24,14 @@
                 "nullable": "N"
             }
         },
-        "dialogBlockId": {
+        "dialogId": {
             "type": "Number",
             "required": true,
             "length": null,
             "precision": 10,
             "scale": 0,
             "mysql": {
-                "columnName": "dialog_block_id",
+                "columnName": "dialog_id",
                 "dataType": "int",
                 "dataLength": null,
                 "dataPrecision": 10,
@@ -46,14 +39,14 @@
                 "nullable": "N"
             }
         },
-        "userInputId": {
+        "moodId": {
             "type": "Number",
             "required": true,
             "length": null,
             "precision": 10,
             "scale": 0,
             "mysql": {
-                "columnName": "user_input_id",
+                "columnName": "mood_id",
                 "dataType": "int",
                 "dataLength": null,
                 "dataPrecision": 10,
@@ -61,14 +54,44 @@
                 "nullable": "N"
             }
         },
-        "nextDialogBlockId": {
+        "title": {
+            "type": "String",
+            "required": false,
+            "length": 45,
+            "precision": null,
+            "scale": null,
+            "mysql": {
+                "columnName": "title",
+                "dataType": "varchar",
+                "dataLength": 45,
+                "dataPrecision": null,
+                "dataScale": null,
+                "nullable": "Y"
+            }
+        },
+        "description": {
+            "type": "String",
+            "required": false,
+            "length": 45,
+            "precision": null,
+            "scale": null,
+            "mysql": {
+                "columnName": "description",
+                "dataType": "varchar",
+                "dataLength": 45,
+                "dataPrecision": null,
+                "dataScale": null,
+                "nullable": "Y"
+            }
+        },
+        "isEntryPoint": {
             "type": "Number",
             "required": false,
             "length": null,
             "precision": 10,
             "scale": 0,
             "mysql": {
-                "columnName": "next_dialog_block_id",
+                "columnName": "is_entry_point",
                 "dataType": "int",
                 "dataLength": null,
                 "dataPrecision": 10,
@@ -76,6 +99,5 @@
                 "nullable": "Y"
             }
         }
-    },
-    "acls": []
+    }
 }

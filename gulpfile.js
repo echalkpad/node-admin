@@ -32,12 +32,11 @@ gulp.task('models', function (cb) {
 	generateModel('sensor_type')
 		.then(generateModel('theme'))
 		.then(generateModel('dialog'))
+		.then(generateModel('dialog_block'))
+		.then(generateModel('dialog_sentence'))
+		.then(generateModel('dialog_user_input'))
 		.then(generateModel('mood'))
 		.then(generateModel('sentence'))
-		.then(generateModel('dialog_sentence'))
 		.then(generateModel('user_input'))
-		.then(generateModel('dialog_user_input'))
-
-
 		.then(end);
 });

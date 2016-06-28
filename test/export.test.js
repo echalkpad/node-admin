@@ -8,11 +8,9 @@ var Promise = require('bluebird');
 var CouchDB = app.models.CouchDB;
 
 describe('export', function() {
-
 	describe('dialogs', function() {
-
 		it('should export dialog', function(done) {
-			CouchDB.export()
+			CouchDB.updateDialogs()
 				.then(function(res) {
 					console.log(res);
 					done();
@@ -20,7 +18,6 @@ describe('export', function() {
 				.catch(function(err) {
 				    throw err
 				});
-
 		});
 	});
 });

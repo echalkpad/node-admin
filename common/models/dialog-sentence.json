@@ -31,14 +31,14 @@
                 "nullable": "N"
             }
         },
-        "dialogId": {
+        "dialogBlockId": {
             "type": "Number",
             "required": true,
             "length": null,
             "precision": 10,
             "scale": 0,
             "mysql": {
-                "columnName": "dialog_id",
+                "columnName": "dialog_block_id",
                 "dataType": "int",
                 "dataLength": null,
                 "dataPrecision": 10,
