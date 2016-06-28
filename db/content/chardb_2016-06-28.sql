@@ -7,7 +7,7 @@
 #
 # Host: 192.168.99.100 (MySQL 5.6.30-76.3)
 # Database: chardb
-# Generation Time: 2016-06-27 22:22:48 +0000
+# Generation Time: 2016-06-28 09:04:51 +0000
 # ************************************************************
 
 
@@ -36,9 +36,9 @@
 LOCK TABLES `dialog` WRITE;
 /*!40000 ALTER TABLE `dialog` DISABLE KEYS */;
 
-INSERT INTO `dialog` (`id`, `theme_id`)
+INSERT INTO `dialog` (`id`, `theme_id`, `type`)
 VALUES
-	(1,1);
+	(1,1,'Dialog');
 
 /*!40000 ALTER TABLE `dialog` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -50,14 +50,14 @@ UNLOCK TABLES;
 LOCK TABLES `dialog_block` WRITE;
 /*!40000 ALTER TABLE `dialog_block` DISABLE KEYS */;
 
-INSERT INTO `dialog_block` (`id`, `dialog_id`, `mood_id`, `title`, `description`, `is_entry_point`)
+INSERT INTO `dialog_block` (`id`, `dialog_id`, `mood_id`, `title`, `description`, `is_entry_point`, `type`)
 VALUES
-	(1,1,1,'First introduction 1',NULL,0),
-	(2,1,1,'First introduction 2',NULL,0),
-	(3,1,1,'First introduction 3',NULL,0),
-	(4,1,1,'First introduction 4',NULL,0),
-	(5,1,1,'First introduction 5',NULL,0),
-	(6,1,1,'First introduction 6',NULL,0);
+	(1,1,1,'First introduction 1',NULL,0,'DialogBlock'),
+	(2,1,1,'First introduction 2',NULL,0,'DialogBlock'),
+	(3,1,1,'First introduction 3',NULL,0,'DialogBlock'),
+	(4,1,1,'First introduction 4',NULL,0,'DialogBlock'),
+	(5,1,1,'First introduction 5',NULL,0,'DialogBlock'),
+	(6,1,1,'First introduction 6',NULL,0,'DialogBlock');
 
 /*!40000 ALTER TABLE `dialog_block` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -108,11 +108,11 @@ LOCK TABLES `dialog_user_input` WRITE;
 
 INSERT INTO `dialog_user_input` (`id`, `dialog_block_id`, `user_input_id`, `next_dialog_block_id`)
 VALUES
-	(2,1,1,NULL),
-	(3,1,2,NULL),
-	(4,2,3,NULL),
-	(6,3,4,NULL),
-	(7,3,5,NULL);
+	(2,1,1,1),
+	(3,1,2,1),
+	(4,2,3,1),
+	(6,3,4,1),
+	(7,3,5,1);
 
 /*!40000 ALTER TABLE `dialog_user_input` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -192,9 +192,9 @@ UNLOCK TABLES;
 LOCK TABLES `theme` WRITE;
 /*!40000 ALTER TABLE `theme` DISABLE KEYS */;
 
-INSERT INTO `theme` (`id`, `sensor_type_id`, `title`, `description`)
+INSERT INTO `theme` (`id`, `sensor_type_id`, `title`, `description`, `type`)
 VALUES
-	(1,NULL,'Introduction',NULL);
+	(1,NULL,'Introduction',NULL,'Theme');
 
 /*!40000 ALTER TABLE `theme` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -211,7 +211,7 @@ UNLOCK TABLES;
 LOCK TABLES `user_input` WRITE;
 /*!40000 ALTER TABLE `user_input` DISABLE KEYS */;
 
-INSERT INTO `user_input` (`id`, `title`, `type`)
+INSERT INTO `user_input` (`id`, `title`, `input_type`)
 VALUES
 	(1,'Great! How about yourself?','option'),
 	(2,'That’s none of your business!','option'),
