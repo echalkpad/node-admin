@@ -1,5 +1,11 @@
 module.exports = function(CouchDB) {
 
+	var host = process.env.COUCHDB_HOST || '192.168.99.100';
+	var port = process.env.COUCHDB_PORT || 5984;
+	var couchDBUrl = 'http://' + host + ':' + port;
+	var nano = require('nano')(couchDBUrl);
+	var chardb = nano.db.use('character');
+
 	/**
 	 *
 	 */
@@ -12,38 +18,40 @@ module.exports = function(CouchDB) {
 	/**
 	 *
 	 */
-	CouchDB.updateDialogs = function() {
+	CouchDB.updateDialogBlocks = function() {
 		var defer = Promise.pending();
 
 		var models = CouchDB.app.models;
-		var Dialog = models.Dialog;
+		var DialogBlock = models.DialogBlock;
 
 		var q = {
 			include: [
-				{relation: 'theme'},
 				{relation: 'dialogSentences', scope: {include: 'sentence'}},
 				{relation: 'dialogInputs', scope: {include: 'input'}}
 			]
 		};
 
-		Dialog.find(q)
+
+		DialogBlock.find(q)
 			.then(function(res) {
 				var tmp = [];
 				for(var i=0; i<res.length; i++) {
 
 					var r = res[i].toJSON();
-					var dialog = {};
+					var dialogBlock = {};
 
-					dialog.id = r.id;
-					dialog.title = r.title;
-					dialog.description = r.description;
-					dialog.isEntryPoint = r.isEntryPoint;
-					dialog.theme = r.theme;
-					dialog.sentences = [];
-					dialog.inputs = {};
+					dialogBlock._id = 'DialogBlock-' + r.id;
+					dialogBlock.id = r.id;
+					dialogBlock.title = r.title;
+					dialogBlock.description = r.description;
+					dialogBlock.isEntryPoint = r.isEntryPoint;
+					dialogBlock.dialogId = r.dialogId;
+					dialogBlock.sentences = [];
+					dialogBlock.inputs = {};
+
 
 					for(var j=0; j<r.dialogSentences.length; j++) {
-						dialog.sentences.push(r.dialogSentences[j].sentence);
+						dialogBlock.sentences.push(r.dialogSentences[j].sentence);
 					}
 
 					var inputTypeTable = {};
@@ -51,17 +59,27 @@ module.exports = function(CouchDB) {
 					for(var j=0; j<r.dialogInputs.length; j++) {
 						var dInput = r.dialogInputs[j];
 						var input = dInput.input;
-						input.nextDialogId = dInput.nextDialogId;
+						input.nextDialogBlockId = dInput.nextDialogBlockId;
 
-						if(! inputTypeTable[input.type]) inputTypeTable[input.type] = [];
-						inputTypeTable[input.type].push(input);
+						if(! inputTypeTable[input.inputType]) inputTypeTable[input.inputType] = [];
+						inputTypeTable[input.inputType].push(input);
 
-						console.log('input', input);
+						//console.log('input', input);
+
 					}
-					dialog.inputs = inputTypeTable;
-					tmp.push(dialog);
+					dialogBlock.inputs = inputTypeTable;
+					tmp.push(dialogBlock);
 				}
-				defer.resolve(tmp);
+
+				var promises = [];
+				for(var i=0; i<tmp.length; i++) {
+					var block = tmp[i];
+					promises.push(writeDoc(block));
+				}
+				return Promise.all(promises);
+			})
+			.then(function(res) {
+				defer.resolve({status: 'ok'})
 			})
 			.catch(function(err) {
 			    defer.reject(err);
@@ -69,11 +87,57 @@ module.exports = function(CouchDB) {
 		return defer.promise;
 	};
 
+
+	/**
+	 * util function to write json into couchdb docs
+	 * @param doc
+	 */
+	function writeDoc(doc) {
+		var defer = Promise.pending();
+
+		var _doc;
+
+		function getDoc() {
+			var defer = Promise.pending();
+			chardb.get(doc._id, function(err, res) {
+				_doc = res;
+				defer.resolve();
+			});
+			return defer.promise;
+		}
+
+		function updateDoc() {
+			var defer = Promise.pending();
+			if(_doc) doc._rev = _doc._rev;
+			chardb.insert(doc, doc._id, function(err, res) {
+				if(err) {
+					defer.reject(err);
+				}
+				defer.resolve();
+			});
+			return defer.promise;
+		}
+
+		getDoc()
+			.then(function(res) {
+				return updateDoc()
+			})
+			.then(function(res) {
+				defer.resolve();
+			})
+			.catch(function(err) {
+			    defer.reject(err);
+			});
+
+		return defer.promise;
+	}
+
+
 	/**
 	 *
 	 */
 	CouchDB.remoteMethod(
-		'updateDialogs', {
+		'updateDialogBlocks', {
 			accepts:[],
 			returns: [
 				{arg:'data', type:'object', root:true}
