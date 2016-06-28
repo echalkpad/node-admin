@@ -21,7 +21,7 @@ services:
           - "$PWD:/home/node-admin"
 
     db:
-        image: percona:5.6
+        image: percona:5.7
         environment:
           MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
           MYSQL_DATABASE: ${MYSQL_DATABASE}
@@ -31,10 +31,16 @@ services:
         ports:
           - "${MYSQL_PORT}:${MYSQL_PORT}"
 
+        volumes:
+          - "${MYSQL_DATA_STORAGE}:/var/lib/mysql"
+
     couchdb:
         image: klaemo/couchdb:1.6
         ports:
           - "${COUCHDB_PORT}:${COUCHDB_PORT}"
+
+        volumes:
+          - "${COUCHDB_DATA_STORAGE}:/usr/local/var/lib/couchdb"
 
     redis:
         image: redis:3
