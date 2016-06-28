@@ -9,6 +9,32 @@ var CouchDB = app.models.CouchDB;
 
 describe('export', function() {
 
+	describe('updateAll', function() {
+		it('should update all docs', function(done) {
+			CouchDB.updateAll()
+				.then(function(res) {
+					console.log(res);
+					done();
+				})
+				.catch(function(err) {
+					throw err
+				});
+		});
+	});
+
+	describe('sensorType', function() {
+		it('should export sensor types', function(done) {
+			CouchDB.updateSensorTypes()
+				.then(function(res) {
+					console.log(res);
+					done();
+				})
+				.catch(function(err) {
+					throw err
+				});
+		});
+	});
+
 	describe('themes', function() {
 		it('should export themes', function(done) {
 			CouchDB.updateThemes()
@@ -47,4 +73,17 @@ describe('export', function() {
 				});
 		});
 	});
+
+	describe('designDocs', function() {
+		it('should update design docs', function(done) {
+			CouchDB.updateDesignDocs()
+				.then(function(res) {
+					done();
+				})
+				.catch(function(err) {
+				    throw err
+				});
+
+		});
+	})
 });
