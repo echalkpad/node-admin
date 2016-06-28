@@ -185,6 +185,7 @@ module.exports = function(CouchDB) {
 	 *
 	 */
 	CouchDB.updateDesignDocs = function() {
+
 		var defer = Promise.pending();
 
 		//--------------------------//
@@ -271,24 +272,16 @@ module.exports = function(CouchDB) {
 			}
 		}
 
-		writeDesignDoc('SensorType', 'by_id', sensorTypeById())
+		writeDesignDoc('SensorType', ['by_id'], [sensorTypeById()])
+
 			.then(function() {
-				writeDesignDoc('Theme', 'by_id', themeById())
+				writeDesignDoc('Theme', ['by_id', 'by_sensor_type_id'], [themeById(), themeBySensorType()])
 			})
 			.then(function() {
-				writeDesignDoc('ThemeBySensorType', 'by_sensor_type_id', themeBySensorType())
+				return writeDesignDoc('Dialog', ['by_id', 'by_theme_id'], [dialogById(), dialogByThemeId()])
 			})
 			.then(function() {
-				return writeDesignDoc('Dialog', 'by_id', dialogById())
-			})
-			.then(function() {
-				return writeDesignDoc('DialogBlock', 'by_id', dialogBlockById())
-			})
-			.then(function() {
-				return writeDesignDoc('DialogByTheme', 'by_theme_id', dialogByThemeId())
-			})
-			.then(function() {
-				return writeDesignDoc('DialogBlockByDialog', 'by_dialog_id', dialogBlockByDialogId())
+				return writeDesignDoc('DialogBlock', ['by_id', 'by_dialog_id'], [dialogBlockById(), dialogBlockByDialogId()])
 			})
 			.then(function() {
 				defer.resolve();
@@ -296,6 +289,7 @@ module.exports = function(CouchDB) {
 			.catch(function(err) {
 			    defer.reject(err);
 			});
+
 		return defer.promise;
 	};
 
@@ -356,9 +350,16 @@ module.exports = function(CouchDB) {
 		var defer = Promise.pending();
 
 		var v = {};
-		v[viewName] = {
-			map: mapFunc
-		};
+
+		for(var i=0; i<viewName.length; i++) {
+
+			var key = viewName[i];
+			var func = mapFunc[i];
+
+			v[key] = {
+				map: func
+			};
+		}
 
 		var view = {
 			language: 'javascript',
