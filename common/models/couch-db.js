@@ -20,6 +20,9 @@ module.exports = function(CouchDB) {
 				return CouchDB.updateDialogBlocks();
 			})
 			.then(function(res) {
+				return CouchDB.updateDesignDocs();
+			})
+			.then(function(res) {
 				defer.resolve({status: 'ok'});
 			})
 			.catch(function(err) {
@@ -361,9 +364,6 @@ module.exports = function(CouchDB) {
 			language: 'javascript',
 			views: v
 		};
-
-		// Fix: 'Error: self signed certificate'
-		process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 
 		chardb.insert(view, '_design/' + designDoc, function(err, res) {
 			console.log('done', err, res);

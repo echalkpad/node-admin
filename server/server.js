@@ -9,6 +9,9 @@ var app = module.exports = loopback();
 
 global.Promise = require('bluebird');
 
+// Fix: 'Error: self signed certificate'
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
+
 // boot scripts mount components like REST API
 boot(app, __dirname);
 
