@@ -38,7 +38,7 @@ myApp.config(['NgAdminConfigurationProvider', function (nga) {
 
     // add entities
     admin.addEntity(nga.entity('SensorTypes'));
-    //admin.addEntity(nga.entity('categories'));
+    admin.addEntity(nga.entity('Moods'));
     //admin.addEntity(nga.entity('products'));
     //admin.addEntity(nga.entity('reviews'));
     //admin.addEntity(nga.entity('commands'));
@@ -47,7 +47,7 @@ myApp.config(['NgAdminConfigurationProvider', function (nga) {
     // configure entities
 
     require('./sensor-types/config')(nga, admin);
-    //require('./categories/config')(nga, admin);
+    require('./moods/config')(nga, admin);
     //require('./products/config')(nga, admin);
     //require('./reviews/config')(nga, admin);
     //require('./commands/config')(nga, admin);
