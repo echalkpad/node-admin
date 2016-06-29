@@ -13,8 +13,7 @@ export default function (nga, admin) {
             .addChild(nga.menu(admin.getEntity('Moods')).title('Mood'))
             .addChild(nga.menu(admin.getEntity('UserInputs')).title('User Input'))
             .addChild(nga.menu(admin.getEntity('Themes')).title('Theme'))
-
-
+            .addChild(nga.menu(admin.getEntity('Dialogs')).title('Dialog'))
 
         )
 }

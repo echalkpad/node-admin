@@ -41,7 +41,7 @@ myApp.config(['NgAdminConfigurationProvider', function (nga) {
     admin.addEntity(nga.entity('Moods'));
     admin.addEntity(nga.entity('UserInputs'));
     admin.addEntity(nga.entity('Themes'));
-    //admin.addEntity(nga.entity('commands'));
+    admin.addEntity(nga.entity('Dialogs'));
     //admin.addEntity(nga.entity('settings'));
 
     // configure entities
@@ -50,7 +50,7 @@ myApp.config(['NgAdminConfigurationProvider', function (nga) {
     require('./moods/config')(nga, admin);
     require('./user-input/config')(nga, admin);
     require('./themes/config')(nga, admin);
-    //require('./commands/config')(nga, admin);
+    require('./dialogs/config')(nga, admin);
     //require('./settings/config')(nga, admin);
 
 
