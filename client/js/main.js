@@ -26,7 +26,7 @@ myApp.directive('zoomInModal', require('./products/zoomInModal'));
 // custom controllers
 myApp.controller('username', ['$scope', '$window', function($scope, $window) { // used in header.html
     $scope.username =  $window.localStorage.getItem('posters_galore_login');
-}])
+}]);
 
 // custom states (pages)
 myApp.config(['$stateProvider', require('./segments/segmentsState')]);

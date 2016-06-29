@@ -9,11 +9,11 @@ up:
 build:
 	$(DOCKER_COMPOSE) build
 
-clean:
+down:
 	$(DOCKER_COMPOSE) kill
 	$(DOCKER_COMPOSE) rm -fv
 
-clean-all:
+clean:
 	docker rm $$(docker ps -a -q); \
 	docker rmi $$(docker images -q -f dangling=true)
 
