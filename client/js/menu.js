@@ -14,6 +14,11 @@ export default function (nga, admin) {
             .addChild(nga.menu(admin.getEntity('UserInputs')).title('User Input'))
             .addChild(nga.menu(admin.getEntity('Themes')).title('Theme'))
             .addChild(nga.menu(admin.getEntity('Dialogs')).title('Dialog'))
+            .addChild(nga.menu(admin.getEntity('DialogBlocks')).title('Dialog Block'))
+            .addChild(nga.menu(admin.getEntity('DialogSentences')).title('Dialog Sentence'))
+            .addChild(nga.menu(admin.getEntity('DialogUserInputs')).title('Dialog User Input'))
+            .addChild(nga.menu(admin.getEntity('Sentences')).title('Sentences'))
+
 
         )
 }

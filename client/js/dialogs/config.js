@@ -6,14 +6,14 @@ export default function(nga, admin) {
 
 		dialog.listView()
 			.fields([
-				nga.field('themeId')
+				nga.field('title')
 			])
 			.listActions(['edit'])
 			.sortField('id')
 			.sortDir('ASC');
 
 		dialog.creationView().fields([
-			nga.field('themeId')
+			nga.field('title')
 		]);
 
 		dialog.editionView().fields(dialog.creationView().fields());

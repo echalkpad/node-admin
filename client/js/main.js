@@ -16,12 +16,14 @@ myApp.config(['NgAdminConfigurationProvider', 'FieldViewConfigurationProvider', 
 }]);
 
 // custom directives
+/*
 myApp.directive('approveReview', require('./reviews/approveReview'));
 myApp.directive('batchApprove', require('./reviews/batchApprove'));
 myApp.directive('starRating', require('./reviews/starRating'));
 myApp.directive('basket', require('./commands/basket'));
 myApp.directive('dashboardSummary', require('./dashboard/dashboardSummary'));
 myApp.directive('zoomInModal', require('./products/zoomInModal'));
+*/
 
 // custom controllers
 myApp.controller('username', ['$scope', '$window', function($scope, $window) { // used in header.html
@@ -29,7 +31,7 @@ myApp.controller('username', ['$scope', '$window', function($scope, $window) { /
 }]);
 
 // custom states (pages)
-myApp.config(['$stateProvider', require('./segments/segmentsState')]);
+//myApp.config(['$stateProvider', require('./segments/segmentsState')]);
 
 myApp.config(['NgAdminConfigurationProvider', function (nga) {
     // create the admin application
@@ -42,7 +44,10 @@ myApp.config(['NgAdminConfigurationProvider', function (nga) {
     admin.addEntity(nga.entity('UserInputs'));
     admin.addEntity(nga.entity('Themes'));
     admin.addEntity(nga.entity('Dialogs'));
-    //admin.addEntity(nga.entity('settings'));
+    admin.addEntity(nga.entity('DialogBlocks'));
+    admin.addEntity(nga.entity('DialogSentences'));
+    admin.addEntity(nga.entity('DialogUserInputs'));
+    admin.addEntity(nga.entity('Sentences'));
 
     // configure entities
 
@@ -51,7 +56,10 @@ myApp.config(['NgAdminConfigurationProvider', function (nga) {
     require('./user-input/config')(nga, admin);
     require('./themes/config')(nga, admin);
     require('./dialogs/config')(nga, admin);
-    //require('./settings/config')(nga, admin);
+    require('./dialog-blocks/config')(nga, admin);
+    require('./dialog-sentences/config')(nga, admin);
+    require('./dialog-user-inputs/config')(nga, admin);
+    require('./sentences/config')(nga, admin);
 
 
 
