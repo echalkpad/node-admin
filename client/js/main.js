@@ -53,7 +53,7 @@ myApp.config(['NgAdminConfigurationProvider', function (nga) {
 
     require('./sensor-types/config')(nga, admin);
     require('./moods/config')(nga, admin);
-    require('./user-input/config')(nga, admin);
+    require('./user-inputs/config')(nga, admin);
     require('./themes/config')(nga, admin);
     require('./dialogs/config')(nga, admin);
     require('./dialog-blocks/config')(nga, admin);
