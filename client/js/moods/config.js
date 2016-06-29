@@ -12,8 +12,12 @@ export default function(nga, admin) {
 		.sortField('id')
 		.sortDir('ASC');
 
-	moods.editionView().fields(moods.listView().fields());
-	moods.creationView().fields(moods.listView().fields());
+	moods.creationView()
+		.fields([
+			nga.field('title')
+		]);
+
+	moods.editionView().fields(moods.creationView().fields());
 	moods.showView().fields(moods.listView().fields());
 
 	return moods;
