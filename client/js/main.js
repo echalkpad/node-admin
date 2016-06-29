@@ -1,10 +1,11 @@
 // require('ng-admin'); removed here and added back as a <script> tag to hep debugging - WebPack doesn't properly handle sourcemaps of dependencies yet
-require('./api');
+//require('./api');
 
 var myApp = angular.module('myApp', ['ng-admin']);
 
 // custom API flavor
 var apiFlavor = require('./api_flavor');
+
 myApp.config(['RestangularProvider', apiFlavor.requestInterceptor]);
 myApp.config(['RestangularProvider', apiFlavor.responseInterceptor]);
 
@@ -32,27 +33,30 @@ myApp.config(['$stateProvider', require('./segments/segmentsState')]);
 
 myApp.config(['NgAdminConfigurationProvider', function (nga) {
     // create the admin application
-    var admin = nga.application('My First Admin')
-        .baseApiUrl('/');
+    var admin = nga.application('Character')
+        .baseApiUrl('https://192.168.99.100:3000/api/');
 
     // add entities
-    admin.addEntity(nga.entity('customers'));
-    admin.addEntity(nga.entity('categories'));
-    admin.addEntity(nga.entity('products'));
-    admin.addEntity(nga.entity('reviews'));
-    admin.addEntity(nga.entity('commands'));
-    admin.addEntity(nga.entity('settings'));
+    admin.addEntity(nga.entity('SensorTypes'));
+    //admin.addEntity(nga.entity('categories'));
+    //admin.addEntity(nga.entity('products'));
+    //admin.addEntity(nga.entity('reviews'));
+    //admin.addEntity(nga.entity('commands'));
+    //admin.addEntity(nga.entity('settings'));
 
     // configure entities
-    require('./customers/config')(nga, admin);
-    require('./categories/config')(nga, admin);
-    require('./products/config')(nga, admin);
-    require('./reviews/config')(nga, admin);
-    require('./commands/config')(nga, admin);
-    require('./settings/config')(nga, admin);
 
-    admin.dashboard(require('./dashboard/config')(nga, admin));
-    admin.header(require('./header.html'));
+    require('./sensor-types/config')(nga, admin);
+    //require('./categories/config')(nga, admin);
+    //require('./products/config')(nga, admin);
+    //require('./reviews/config')(nga, admin);
+    //require('./commands/config')(nga, admin);
+    //require('./settings/config')(nga, admin);
+
+
+
+    //admin.dashboard(require('./dashboard/config')(nga, admin));
+    //admin.header(require('./header.html'));
     admin.menu(require('./menu')(nga, admin));
 
     // attach the admin application to the DOM and execute it
